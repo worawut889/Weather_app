@@ -1,7 +1,7 @@
 const axios = require('axios')
 
-const forecast = async (location, callback) => {
-  await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=969cbf505f969f0686763be1f5e655e1`)
+const forecast = (location, callback) => {
+  axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=969cbf505f969f0686763be1f5e655e1`)
     .then((response) => {
       const location = response.data.coord;
       callback(null, location)
@@ -11,8 +11,8 @@ const forecast = async (location, callback) => {
     })
 }
 
-const geolocation = async ({lon, lat}, callback) => {
-  await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=969cbf505f969f0686763be1f5e655e1`)
+const geolocation = ({ lon, lat }, callback) => {
+  axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=969cbf505f969f0686763be1f5e655e1`)
     .then((response) => {
       const data = response.data.weather;
       callback(null, data)
